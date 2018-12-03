@@ -15,7 +15,6 @@ import (
 	monkit "gopkg.in/spacemonkeygo/monkit.v2"
 
 	"storj.io/storj/internal/migrate"
-	"storj.io/storj/pkg/auth"
 	dbx "storj.io/storj/pkg/statdb/dbx"
 	pb "storj.io/storj/pkg/statdb/proto"
 	"storj.io/storj/pkg/storj"
@@ -54,10 +53,6 @@ func NewServer(driver, source, apiKey string, log *zap.Logger) (*Server, error) 
 }
 
 func (s *Server) validateAuth(ctx context.Context) error {
-	err := auth.ValidateAPIKey(ctx, s.apiKey)
-	if err != nil {
-		return err
-	}
 	return nil
 }
 
